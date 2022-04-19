@@ -3,27 +3,22 @@
 #include <string>
 
 bool collective_anagrams(std::string str_1, std::string str_2) {
-  int count;
-  if (str_1.length() != str_2.size()) {
-    return false;
-  } else {
-    for (int i = 0; i < str_1.size(); i++) {
-      for (int j = 0; j < str_1.size(); j++) {
-        if (str_1[i] == str_2[j]) {
-          count++;
-          break;
-        } else
-          return false;
-      }
-    }
-    if (count == str_1.size()) {
-      return true;
-    }
+  int count[256] = {0};
+  int i;
+  for (i = 0; str_1[i] && str_2[i]; i++) {
+    count[str_1[i]]++;
+    count[str_2[i]]--;
   }
+  if (str_1[i] || str_2[i])
+    return false;
+  for (i = 0; i < 256; i++)
+    if (count[i])
+      return false;
+  return true;
 }
 
 int main() {
-  std::cout << "Name Project" << std::endl;
+  std::cout << "Anagrams" << std::endl;
   std::string word_1;
   std::string word_2;
   std::cout << "Enter the first word" << std::endl;
