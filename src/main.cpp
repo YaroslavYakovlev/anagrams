@@ -3,12 +3,10 @@
 #include <string>
 
 bool CollectiveAnagrams(std::map<char, int> word1, std::map<char, int> word2) {
-  for (std::map<char, int>::iterator it_1 = word1.begin(); it_1 != word1.end(); it_1++) {
-    if (word2.find(it_1->first) != word2.end()) {
-      return true;
-    } else
-      return false;
-  }
+  if (word1 == word2)
+    return true;
+  else
+    return false;
 }
 
 std::map<char, int> BuildCharCounters(std::string& str) {
